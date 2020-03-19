@@ -1,0 +1,17 @@
+{
+  "env": {
+    "es6": true,
+    "browser": true
+  },
+  "rules": {
+    "no-unused-vars": 1,
+	"react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+	"react/jsx-one-expression-per-line": [0, { "allow": "single-child" }]
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+	"airbnb"
+  ],
+  "plugins": ["html", "markdown"]
+}
