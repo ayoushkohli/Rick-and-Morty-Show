@@ -12,3 +12,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+@media (max-width: 768px){
+  body,.MuiTypography-body1{
+    font-size: 14px;
+  }
+  #select-wrapper{
+    max-width: 100%
+  }
+}

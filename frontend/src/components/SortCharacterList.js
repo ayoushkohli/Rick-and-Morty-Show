@@ -20,7 +20,7 @@ class SortCharacterList extends Component {
 
     render() {
       return (
-        <SortWrapper>
+        <SortWrapper id={'select-wrapper'}>
           <FormControl variant="filled" style={{'width':'100%'}}>
             <InputLabel htmlFor="sort-character-list">Sort</InputLabel>
             <Select

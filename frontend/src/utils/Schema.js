@@ -1,29 +1,31 @@
-function makeFilter(obj) {
-  if (obj.selectedFilters.selectedSpeciesFilter == null && obj.selectedFilters.selectedGenderFilter == null && obj.searchValue !== null) {
-    return `(filter : {name:${JSON.stringify(obj.searchValue)}})`;
-  } 
-  if (obj.selectedFilters.selectedSpeciesFilter !== null && obj.selectedFilters.selectedGenderFilter == null) {
-    if (obj.searchValue !== null) {
-      return `(filter : {name:${JSON.stringify(obj.searchValue)},species:${JSON.stringify(obj.selectedFilters.selectedSpeciesFilter)}})`;
+function makeFilter(filtersObject) {
+  const filterString = {};
+  Object.keys(filtersObject).map(function (key) {
+    if (typeof filtersObject[key] == 'object') {
+      for (var innerkey in filtersObject[key]) {
+        if (filtersObject[key][innerkey] !== null) {
+          if (innerkey.includes('Species'))
+            filterString.species = filtersObject[key][innerkey];
+          else if (innerkey.includes('Gender'))
+            filterString.gender = filtersObject[key][innerkey];
+          else if (innerkey.includes('Location'))
+            filterString.status = filtersObject[key][innerkey];
+        }
+      }
+    } else if (filtersObject[key] !== null) {
+      filterString.name = filtersObject[key];
     }
-    return `(filter : {species:${JSON.stringify(obj.selectedFilters.selectedSpeciesFilter)}})`;
-  } 
-  if (obj.selectedFilters.selectedSpeciesFilter == null && obj.selectedFilters.selectedGenderFilter !== null) {
-    if (obj.searchValue !== null) {
-      return `(filter : {name:${JSON.stringify(obj.searchValue)},gender:${JSON.stringify(obj.selectedFilters.selectedGenderFilter)}})`;
-    }
-    return `(filter : {gender:${JSON.stringify(obj.selectedFilters.selectedGenderFilter)}})`;
-  } 
-  if (obj.selectedFilters.selectedSpeciesFilter !== null && obj.selectedFilters.selectedGenderFilter !== null) {
-    if (obj.searchValue !== null) {
-      return `(filter : {name:${JSON.stringify(obj.searchValue)},gender:${JSON.stringify(obj.selectedFilters.selectedGenderFilter)},species:${JSON.stringify(obj.selectedFilters.selectedSpeciesFilter)}})`;
-    }
-    return `(filter : {gender:${JSON.stringify(obj.selectedFilters.selectedGenderFilter)},species:${JSON.stringify(obj.selectedFilters.selectedSpeciesFilter)}})`;
-  }
-  return '';
+  });
+  return Object.keys(filterString).length ? filterString : '';
+}
+function convertObjectToParsing(object){
+  const json = JSON.stringify(object);
+  return json.replace(/"([^"]+)":/g, '$1:');
 }
 export default function CharacterSchema(val) {
-  const filterQuery = makeFilter(val);
+  let filterQuery = makeFilter(val);
+  if(filterQuery !== '')
+    filterQuery = `(filter:${convertObjectToParsing(filterQuery)})`;
   const CharacterSchemaQ = `query {
         characters${filterQuery} {
             info {
