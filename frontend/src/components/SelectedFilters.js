@@ -35,7 +35,14 @@ const SPAN = styled.span`
 `;
 class SelectedFilters extends Component {
     handleClick = (key) => {
-      this.props.removeFilter(key);
+      let referenceFilter = key;
+      if(referenceFilter.includes('Species'))
+        referenceFilter = 'speciesRef';
+      else if (referenceFilter.includes('Gender'))
+        referenceFilter = 'genderRef';
+      else if (referenceFilter.includes('Location'))
+        referenceFilter = 'locationRef';
+      this.props.removeFilter(key,referenceFilter);
     }
     render() {
       if (this.props.selectedFilters.selectedSpeciesFilter == null
