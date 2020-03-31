@@ -46,8 +46,8 @@ class App extends Component {
   }
 
   originFilterResponse = {
-    key: 'Origin',
-    value: ['Unknown', 'Nuptia 4'],
+    key: 'Status',
+    value: ['Alive', 'Dead', 'Unknown'],
   }
 
   fetchData = (value) => {
@@ -70,6 +70,8 @@ class App extends Component {
       selectedFiltersArray.selectedFilters.selectedSpeciesFilter = filterValue;
     } else if (filterName === this.genderFilterResponse.key) {
       selectedFiltersArray.selectedFilters.selectedGenderFilter = filterValue;
+    }else if (filterName === this.originFilterResponse.key) {
+      selectedFiltersArray.selectedFilters.selectedLocationFilter = filterValue;
     }
     this.setState({ filtersObject: selectedFiltersArray, loading: false });
     this.fetchData(this.state.filtersObject);
@@ -99,21 +101,21 @@ class App extends Component {
     return (
       <Container>
         <Grid container spacing={4}>
-          <Grid item xs={12} sm={2}>
+          <Grid item xs={12} sm={3} md={2}>
             <H2>Filters</H2>
             <Filter filterResponse={this.speciesFilterResponse} addFilter={this.addFilter} />
             <Filter filterResponse={this.genderFilterResponse} addFilter={this.addFilter} />
             <Filter filterResponse={this.originFilterResponse} addFilter={this.addFilter} />
           </Grid>
-          <Grid item xs={12} sm={10}>
+          <Grid item xs={12} sm={9} md={10}>
             <Grid container>
               <Grid item xs={12} sm={12}>
                 <SelectedFilters selectedFilters={this.state.filtersObject.selectedFilters} removeFilter={this.removeFilter} />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={6} md={4}>
                 <SearchCharacter parentCallback={this.searchCharacterFn} />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={6} md={8}>
                 <SortCharacterList SortCharacterListFn={this.sortCharacterList} />
               </Grid>
             </Grid>

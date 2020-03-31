@@ -86,7 +86,7 @@ const SingleCharacter = (props) => {
     id, name, image, status, species, gender, created, location, origin,
   } = props.characerList;
   return (
-    <Grid item xs={6} sm={3}>
+    <Grid item xs={6} sm={4} md={3}>
       <WrapperContainer>
         <CardHeader>
           <Avatar style={{ backgroundImage: `url(${image})` }} />

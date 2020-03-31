@@ -5,10 +5,11 @@
 	"worker": true,
 	"jest": true
   },
+  
   "rules": {
     "no-unused-vars": 0,
 	"react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-	"max-len": [2, 150, 4, {"ignoreUrls": true}]  
+	"max-len": [2, 250, 4, {"ignoreUrls": true}]  
   },
   "extends": [
     "eslint:recommended",

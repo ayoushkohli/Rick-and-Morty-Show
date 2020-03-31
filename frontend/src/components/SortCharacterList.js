@@ -8,6 +8,7 @@ const SortWrapper = styled.div`
     margin-top: 2rem;
     margin-bottom: 2rem;
     float: right;
+    background: #fff;
 `;
 class SortCharacterList extends Component {
     selectedValue = '';
@@ -20,7 +21,7 @@ class SortCharacterList extends Component {
     render() {
       return (
         <SortWrapper>
-          <FormControl variant="filled">
+          <FormControl variant="filled" style={{'width':'100%'}}>
             <InputLabel htmlFor="sort-character-list">Sort</InputLabel>
             <Select
               native
