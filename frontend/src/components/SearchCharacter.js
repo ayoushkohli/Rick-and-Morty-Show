@@ -32,12 +32,10 @@ class SearchCharacter extends Component {
         this.sendData();
       }
     }
-
     sendData = () => {
       const inputValue = this.refs.searchInputBox.value;
-      inputValue !== '' ? this.props.parentCallback(inputValue) : this.isError = true;
+      inputValue !== '' ? this.props.parentCallback(inputValue) : this.props.parentCallback('');
     }
-
     render() {
       return (
         <SearchWrapper>

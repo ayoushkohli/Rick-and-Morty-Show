@@ -20,10 +20,12 @@ const H4 = styled.h4`
 `;
 class Filter extends Component {
     selectedOption = '';
-
     handleChange = (event) => {
       this.selectedOption = event.target.value;
       this.props.addFilter(event.target.value, event.target.name);
+    }
+    removeFilterHandler = () =>{
+        this.selectedOption = '';
     }
 
     render() {
