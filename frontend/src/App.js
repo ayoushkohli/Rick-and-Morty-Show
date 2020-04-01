@@ -1,6 +1,7 @@
 // App.js
 import React, { Component } from 'react';
 import { Container, CircularProgress, Grid } from '@material-ui/core';
+import { Pagination } from '@material-ui/lab';
 import styled from 'styled-components';
 import fetchDataQuery from './services/fetchData';
 import Filter from './components/filters/Filters';
@@ -33,6 +34,11 @@ class App extends Component {
       },
       searchValue: null,
     },
+    pageSetting: {
+      pageCount: null,
+      pages: null,
+      currentPage: 1
+    }
   };
 
   speciesFilterResponse = {
@@ -52,10 +58,23 @@ class App extends Component {
 
   fetchData = (value) => {
     this.setState({ loading: true }, () => {
-      const fetchedJSONResponse = fetchDataQuery(appConfig.ENDPOINT_URL, value)
+      const fetchedJSONResponse = fetchDataQuery(appConfig.ENDPOINT_URL, value, this.state.pageSetting)
         .then((response) => response.json());
       fetchedJSONResponse.then((responseAsJson) => {
-        this.setState({ loading: false, data: responseAsJson.data });
+        let pageSetting = this.state.pageSetting;
+        if(responseAsJson.data.characters){
+          const PageCount = Math.round(responseAsJson.data.characters.info.count/20);
+          pageSetting.pages = responseAsJson.data.characters.info.pages || 0;
+          pageSetting.pageCount = PageCount;
+        }else{
+          pageSetting.pageCount = 0;
+        }
+        this.setState({ 
+          loading: false, 
+          data: responseAsJson.data,
+          pageSetting: pageSetting
+        });
+        console.log(this.state)
       });
     });
   }
@@ -73,7 +92,9 @@ class App extends Component {
     }else if (filterName === this.originFilterResponse.key) {
       selectedFiltersArray.selectedFilters.selectedLocationFilter = filterValue;
     }
-    this.setState({ filtersObject: selectedFiltersArray, loading: false });
+    let pageSetting = this.state.pageSetting;
+    pageSetting.currentPage = 1;
+    this.setState({ filtersObject: selectedFiltersArray, loading: false, pageSetting });
     this.fetchData(this.state.filtersObject);
   }
 
@@ -81,7 +102,9 @@ class App extends Component {
     const selectedFiltersArray = this.state.filtersObject;
     selectedFiltersArray.selectedFilters[filterName] = null;
     this.resetFilterValue(referenceFilterName);
-    this.setState({ filtersObject: selectedFiltersArray, loading: false });
+    let pageSetting = this.state.pageSetting;
+    pageSetting.currentPage = 1;
+    this.setState({ filtersObject: selectedFiltersArray, loading: false , pageSetting});
     this.fetchData(this.state.filtersObject);
   }
   resetFilterValue = (filterName) => {
@@ -105,7 +128,12 @@ class App extends Component {
     state.characters.results.reverse();
     this.setState({ data: state });
   }
-
+  handlePagination = (event,value) => {
+    let prevState = this.state.pageSetting;
+    prevState.currentPage = value;
+    this.setState({pageSetting: prevState});
+    this.fetchData(this.state.filtersObject);
+  }
   render() {
     return (
       <Container>
@@ -131,11 +159,17 @@ class App extends Component {
             </Grid>
             <CharacterListWrapper>
               {
-                (!this.state.loading && this.state.data)
-                  ? <CharcterList data={this.state.data} /> : <CircularProgress color="secondary" />
+                (!this.state.loading && this.state.data) ?
+                <React.Fragment>
+                  <CharcterList data={this.state.data} />
+                  {(this.state.pageSetting.pageCount > 0)?
+                  <Pagination id="pagination" count={this.state.pageSetting.pageCount} 
+                    page={this.state.pageSetting.currentPage} defaultPage={1} boundaryCount={5} 
+                    color="secondary" variant="outlined" onChange={this.handlePagination}/>:''}
+                </React.Fragment>: 
+                <CircularProgress color="secondary" />
               }
             </CharacterListWrapper>
-
           </Grid>
         </Grid>
       </Container>

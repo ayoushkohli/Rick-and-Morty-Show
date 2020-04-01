@@ -1,6 +1,6 @@
 import CharacterSchema from '../utils/graphQLQuerySchema';
 
-export default function fetchDataQuery(url, value) {
+export default function fetchDataQuery(url, value, pageSetting) {
   const parameterQuery = value;
   return fetch(url, {
     method: 'POST',
@@ -8,7 +8,7 @@ export default function fetchDataQuery(url, value) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      query: CharacterSchema(parameterQuery),
+      query: CharacterSchema(parameterQuery,pageSetting),
     }),
   });
 }

@@ -22,14 +22,17 @@ function convertObjectToParsing(object){
   const json = JSON.stringify(object);
   return json.replace(/"([^"]+)":/g, '$1:');
 }
-export default function CharacterSchema(val) {
+export default function CharacterSchema(val,pageSetting) {
   let filterQuery = makeFilter(val);
   if(filterQuery !== '')
-    filterQuery = `(filter:${convertObjectToParsing(filterQuery)})`;
+    filterQuery = `(page:${pageSetting.currentPage}, filter:${convertObjectToParsing(filterQuery)})`;
+  else 
+    filterQuery = `(page:${pageSetting.currentPage})`;
   const CharacterSchemaQ = `query {
         characters${filterQuery} {
             info {
                 count
+                pages
             }
             results {
                 id
