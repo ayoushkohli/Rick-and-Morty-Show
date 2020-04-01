@@ -1,8 +1,8 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import SingleCharacter from './SingleCharacter';
-import NoResultFound from './NoResultFound';
+import SingleCharacter from '../singleCharacter/SingleCharacter';
+import NoResultFound from '../NoResultFound';
 
 const CharcterList = (props) => {
   const { data } = props;

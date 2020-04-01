@@ -2,22 +2,8 @@ import React, { Component } from 'react';
 import {
   Radio, FormControlLabel, Grid, RadioGroup, FormControl,
 } from '@material-ui/core';
-import styled from 'styled-components';
+import { GridContainer, H4 } from './style';
 
-const GridContainer = styled.div`
-    border: 1px solid #000;
-    margin-top: 1rem;
-    padding: 0.7rem;
-    background: #fff;
-`;
-const H4 = styled.h4`
-    color: #000;
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin: 0;
-    padding-bottom: 0.5rem;
-    width: 100%;
-`;
 class Filter extends Component {
     selectedOption = '';
     handleChange = (event) => {

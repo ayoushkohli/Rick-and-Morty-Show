@@ -1,4 +1,4 @@
-import CharacterSchema from '../utils/Schema';
+import CharacterSchema from '../utils/graphQLQuerySchema';
 
 export default function fetchDataQuery(url, value) {
   const parameterQuery = value;

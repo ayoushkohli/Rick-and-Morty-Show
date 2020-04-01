@@ -2,13 +2,13 @@
 import React, { Component } from 'react';
 import { Container, CircularProgress, Grid } from '@material-ui/core';
 import styled from 'styled-components';
-import fetchDataQuery from './components/fetchData';
-import Filter from './components/Filters';
-import CharcterList from './components/CharacterList';
-import SearchCharacter from './components/SearchCharacter';
-import SortCharacterList from './components/SortCharacterList';
-import SelectedFilters from './components/SelectedFilters';
-import ENDPOINT_URL from './config/config';
+import fetchDataQuery from './services/fetchData';
+import Filter from './components/filters/Filters';
+import CharcterList from './components/characterList/CharacterList';
+import SearchCharacter from './components/searchCharacter/SearchCharacter';
+import SortCharacterList from './components/sortCharacter/SortCharacterList';
+import SelectedFilters from './components/selectedFilters/SelectedFilters';
+import appConfig from './config/config';
 
 const H2 = styled.h2`
   color: #000;
@@ -52,7 +52,7 @@ class App extends Component {
 
   fetchData = (value) => {
     this.setState({ loading: true }, () => {
-      const fetchedJSONResponse = fetchDataQuery(ENDPOINT_URL, value)
+      const fetchedJSONResponse = fetchDataQuery(appConfig.ENDPOINT_URL, value)
         .then((response) => response.json());
       fetchedJSONResponse.then((responseAsJson) => {
         this.setState({ loading: false, data: responseAsJson.data });
