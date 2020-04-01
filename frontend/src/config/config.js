@@ -1,3 +1,5 @@
-const ENDPOINT_URL = 'https://rickandmortyapi.com/graphql/';
+let appConfig = {
+    ENDPOINT_URL: 'https://rickandmortyapi.com/graphql/'
+}
 
-export default ENDPOINT_URL;
+export default appConfig;

@@ -1,18 +1,9 @@
 import React, { Component } from 'react';
 import { Select, FormControl, InputLabel } from '@material-ui/core';
-import styled from 'styled-components';
+import {SortWrapper} from './style';
 
-const SortWrapper = styled.div`
-    max-width: 12rem;
-    width: 100%;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    float: right;
-    background: #fff;
-`;
 class SortCharacterList extends Component {
     selectedValue = '';
-
     handleChange = (event) => {
       this.selectedValue = event.target.value;
       this.props.SortCharacterListFn(this.selectedValue);
