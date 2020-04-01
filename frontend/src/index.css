@@ -12,6 +12,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+#pagination{
+  margin: 1rem 0;
+}
+#pagination .MuiPaginationItem-outlined{
+  border: 1px solid rgba(255, 255, 255, 0.50);
+}
+#pagination .MuiPaginationItem-root {
+  color: #fff;
+}
+#pagination .MuiPaginationItem-outlinedSecondary.Mui-selected{
+  color: #f50057;
+  border: 1px solid rgba(245, 0, 87, 0.5);
+}
 @media (max-width: 768px){
   body,.MuiTypography-body1{
     font-size: 14px;
