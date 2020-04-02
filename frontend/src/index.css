@@ -14,6 +14,15 @@ code {
 }
 #pagination{
   margin: 1rem 0;
+  text-align: center;
+}
+#pagination .MuiPagination-ul{
+  display: inline-block;
+  width: 100%;
+  padding: 0;
+}
+#pagination .MuiPagination-ul li{
+  display: inline-block;
 }
 #pagination .MuiPaginationItem-outlined{
   border: 1px solid rgba(255, 255, 255, 0.50);

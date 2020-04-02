@@ -2,10 +2,7 @@ import React from 'react';
 import { Grid } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import formatDate from '../../utils/helpers';
-import { WrapperContainer, CardHeader, 
-  CardHeaderdetails, Avatar, H3, CardContent, 
-  CardContentLI, CardContentUL, CardContentSpanLeft, 
-  CardContentSpanRight, Span } from './style';
+import * as S from './style';
 
 const SingleCharacter = (props) => {
   const {
@@ -13,66 +10,66 @@ const SingleCharacter = (props) => {
   } = props.characerList;
   return (
     <Grid item xs={6} sm={4} md={3}>
-      <WrapperContainer>
-        <CardHeader>
-          <Avatar style={{ backgroundImage: `url(${image})` }} />
-          <CardHeaderdetails>
-            <H3>{name}</H3>
-            <Span>
+      <S.WrapperContainer>
+        <S.CardHeader>
+          <S.Avatar style={{ backgroundImage: `url(${image})` }} />
+          <S.CardHeaderdetails>
+            <S.H3>{name}</S.H3>
+            <S.Span>
               id:
               {' '}
               {id}
               {' '}
               created
               {formatDate(created)}
-            </Span>
-          </CardHeaderdetails>
-        </CardHeader>
-        <CardContent>
-          <CardContentUL>
-            <CardContentLI>
-              <CardContentSpanLeft>
+            </S.Span>
+          </S.CardHeaderdetails>
+        </S.CardHeader>
+        <S.CardContent>
+          <S.CardContentUL>
+            <S.CardContentLI>
+              <S.CardContentSpanLeft>
                 Status
-              </CardContentSpanLeft>
-              <CardContentSpanRight>
+              </S.CardContentSpanLeft>
+              <S.CardContentSpanRight>
                 {status}
-              </CardContentSpanRight>
-            </CardContentLI>
-            <CardContentLI>
-              <CardContentSpanLeft>
+              </S.CardContentSpanRight>
+            </S.CardContentLI>
+            <S.CardContentLI>
+              <S.CardContentSpanLeft>
                 Species
-              </CardContentSpanLeft>
-              <CardContentSpanRight>
+              </S.CardContentSpanLeft>
+              <S.CardContentSpanRight>
                 {species}
-              </CardContentSpanRight>
-            </CardContentLI>
-            <CardContentLI>
-              <CardContentSpanLeft>
+              </S.CardContentSpanRight>
+            </S.CardContentLI>
+            <S.CardContentLI>
+              <S.CardContentSpanLeft>
                 Gender
-              </CardContentSpanLeft>
-              <CardContentSpanRight>
+              </S.CardContentSpanLeft>
+              <S.CardContentSpanRight>
                 {gender}
-              </CardContentSpanRight>
-            </CardContentLI>
-            <CardContentLI>
-              <CardContentSpanLeft>
+              </S.CardContentSpanRight>
+            </S.CardContentLI>
+            <S.CardContentLI>
+              <S.CardContentSpanLeft>
                 Origin
-              </CardContentSpanLeft>
-              <CardContentSpanRight>
+              </S.CardContentSpanLeft>
+              <S.CardContentSpanRight>
                 {origin.name}
-              </CardContentSpanRight>
-            </CardContentLI>
-            <CardContentLI>
-              <CardContentSpanLeft>
+              </S.CardContentSpanRight>
+            </S.CardContentLI>
+            <S.CardContentLI>
+              <S.CardContentSpanLeft>
                 Last Location
-              </CardContentSpanLeft>
-              <CardContentSpanRight>
+              </S.CardContentSpanLeft>
+              <S.CardContentSpanRight>
                 {location.name}
-              </CardContentSpanRight>
-            </CardContentLI>
-          </CardContentUL>
-        </CardContent>
-      </WrapperContainer>
+              </S.CardContentSpanRight>
+            </S.CardContentLI>
+          </S.CardContentUL>
+        </S.CardContent>
+      </S.WrapperContainer>
     </Grid>
   );
 };
