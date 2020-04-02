@@ -2,25 +2,14 @@
 import React, { Component } from 'react';
 import { Container, CircularProgress, Grid } from '@material-ui/core';
 import { Pagination } from '@material-ui/lab';
-import styled from 'styled-components';
 import fetchDataQuery from './services/fetchData';
 import Filter from './components/filters/Filters';
 import CharcterList from './components/characterList/CharacterList';
 import SearchCharacter from './components/searchCharacter/SearchCharacter';
 import SortCharacterList from './components/sortCharacter/SortCharacterList';
 import SelectedFilters from './components/selectedFilters/SelectedFilters';
+import { H2, CharacterListWrapper} from './appStyle';
 import appConfig from './config/config';
-
-const H2 = styled.h2`
-  color: #000;
-  font-size: 1.4rem;
-  font-weight: 600;
-`;
-const CharacterListWrapper = styled.div`
-  background: rgb(32, 35, 41);
-  padding: 0.5rem;
-  height: calc(100% - 8.5rem);
-`;
 
 class App extends Component {
   state = {
