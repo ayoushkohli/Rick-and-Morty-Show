@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const SearchWrapper = styled.div`
+  position: relative;
 `;
 export const SearchTitle = styled.p`
     font-size: 1rem;
