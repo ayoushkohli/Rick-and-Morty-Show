@@ -53,3 +53,14 @@ export default function CharacterSchema(val,pageSetting) {
     }`;
   return CharacterSchemaQ;
 }
+export function AutoSuggestionCharacterSchema(val){
+  const filterQuery = `(filter:{name:${JSON.stringify(val)}})`;
+  const AutoSuggestionCharacterSchema = `query {
+    characters${filterQuery} {
+        results {
+            name
+        }
+    }
+}`;
+return AutoSuggestionCharacterSchema;
+}

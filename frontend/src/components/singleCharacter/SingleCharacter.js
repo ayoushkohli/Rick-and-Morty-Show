@@ -20,7 +20,7 @@ const SingleCharacter = (props) => {
               {' '}
               {id}
               {' '}
-              created
+              created {' '}
               {formatDate(created)}
             </S.Span>
           </S.CardHeaderdetails>
